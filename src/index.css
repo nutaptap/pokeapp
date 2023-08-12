@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap");
+
 :root {
   --primary-color: #1d1d1d;
   --secondary-color: #5479e9;
 
-  font-family: monospace;
+  font-family: "Inter", monospace;
   line-height: 1.5;
   font-weight: 400;
 
@@ -10,11 +12,11 @@
   background-color: #f6f5f4;
 }
 
-.app {
+/* .app {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-}
+} */
 
 .search-bar {
   display: flex;
