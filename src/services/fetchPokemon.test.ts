@@ -26,4 +26,18 @@ describe("fetchPokemon", () => {
     );
     expect(result.name).toBe("pikachu");
   });
+  it("accepts uppercase", async () => {
+    const pokemonData = {
+      name: "pikachu",
+    };
+
+    (fetch as jest.Mock).mockResolvedValue(createFetchResponse(pokemonData));
+
+    const result = await fetchPokemon("Pikachu");
+
+    expect(fetch).toHaveBeenCalledWith(
+      "https://pokeapi.co/api/v2/pokemon/pikachu"
+    );
+    expect(result.name).toBe("pikachu");
+  });
 });
