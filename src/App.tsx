@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { SearchBar } from "./components/SearchBar";
 import { fetchPokemon } from "./services/fetchPokemon.ts";
-import { Pokemon } from "./types.ts";
+import { PokemonType } from "./types.ts";
+import { Pokemon } from "./components/Pokemon.tsx";
 
 function App() {
-  const [currentPokemon, setCurrentPokemon] = useState<Pokemon | null>(null);
+  const [currentPokemon, setCurrentPokemon] = useState<PokemonType | null>(
+    null
+  );
   const [fetchError, setFetchError] = useState(false);
 
   const fetchPokemonData = async (name: string) => {
@@ -20,17 +23,11 @@ function App() {
 
   return (
     <main className="app">
-      <h1>Hello Pokeapp!</h1>
       <SearchBar onSearchSubmit={fetchPokemonData} />
       {fetchError && (
         <img src="/dittochu.png" style={{ height: "300px", width: "auto" }} />
       )}
-      {!fetchError && (
-        <img
-          src={currentPokemon?.sprites.other["official-artwork"].front_default}
-          style={{ height: "300px", width: "auto" }}
-        />
-      )}
+      {!fetchError && <Pokemon pokemonData={currentPokemon} />}
     </main>
   );
 }

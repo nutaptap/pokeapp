@@ -29,7 +29,7 @@ export interface Stat {
   };
 }
 
-export interface Pokemon {
+export interface PokemonType {
   abilities: Ability[];
   base_experience: number;
   forms: any[];
