@@ -6,5 +6,4 @@ export async function fetchPokemon(name: string) {
   } catch (error) {
     throw new Error("Failed to fetch pokemon data");
   }
-  /* return name.toUpperCase(); */
 }
