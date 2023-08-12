@@ -2,6 +2,8 @@ import { PokemonType } from "../types.ts";
 import { formatHeight } from "../utils/formatHeight.ts";
 import { formatWeight } from "../utils/formatWeight.ts";
 import "../pokemon.css";
+import { ProgressBar } from "./ProgressBar.tsx";
+import { findMaxValue } from "../utils/findMaxValue.ts";
 
 interface PokemonProps {
   pokemonData: PokemonType | null;
@@ -19,8 +21,8 @@ export function Pokemon({ pokemonData }: PokemonProps) {
         <h3># {pokemonData?.id}</h3>
         <h2>{pokemonData?.name.toUpperCase()}</h2>
       </section>
-      <section className="table-container">
-        <table className="potato">
+      <section>
+        <table>
           <tr>
             <td>Height</td>
             <td>{pokemonData && formatHeight(pokemonData.height)}</td>
@@ -69,12 +71,17 @@ export function Pokemon({ pokemonData }: PokemonProps) {
           </tr>
         </table>
       </section>
-      <section className="table-container">
+      <section>
         <table>
           {pokemonData?.stats.map((stat) => (
-            <tr key={stat.stat.name}>
+            <tr className="stat" key={stat.stat.name}>
               <td>{stat.stat.name}</td>
               <td>{stat.base_stat}</td>
+              <ProgressBar
+                currentValue={stat.base_stat}
+                maxValue={findMaxValue(pokemonData.stats)}
+                color={pokemonData.types[0].type.name}
+              />
             </tr>
           ))}
         </table>
