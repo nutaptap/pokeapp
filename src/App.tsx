@@ -3,6 +3,7 @@ import { SearchBar } from "./components/SearchBar";
 import { fetchPokemon } from "./services/fetchPokemon.ts";
 import { PokemonType } from "./types.ts";
 import { Pokemon } from "./components/Pokemon.tsx";
+import { NotFound } from "./components/NotFound.tsx";
 
 function App() {
   const [currentPokemon, setCurrentPokemon] = useState<PokemonType | null>(
@@ -24,10 +25,10 @@ function App() {
   return (
     <main className="app">
       <SearchBar onSearchSubmit={fetchPokemonData} />
-      {fetchError && (
-        <img src="/dittochu.png" style={{ height: "300px", width: "auto" }} />
+      {fetchError && <NotFound />}
+      {!fetchError && currentPokemon !== null && (
+        <Pokemon pokemonData={currentPokemon} />
       )}
-      {!fetchError && <Pokemon pokemonData={currentPokemon} />}
     </main>
   );
 }
