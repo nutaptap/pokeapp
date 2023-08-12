@@ -14,6 +14,7 @@ export function SearchBar({ onSearchSubmit }: SearchBarProps) {
   const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSearchSubmit(searchTerm);
+    setSearchTerm("");
   };
 
   return (
@@ -23,6 +24,7 @@ export function SearchBar({ onSearchSubmit }: SearchBarProps) {
         type="text"
         placeholder="Search..."
         onChange={handleInputChange}
+        value={searchTerm}
       />
       <button type="submit" aria-labelledby="button-label">
         <span id="button-label" hidden>
