@@ -12,8 +12,9 @@ export function ProgressBar({
   const percentage = (currentValue / maxValue) * 100;
 
   return (
-    <div className="progress-bar">
+    <div className="progress-bar" aria-labelledby="percentage-label">
       <div className={color} style={{ width: `${percentage}%` }}></div>
+      <span id="percentage-label" hidden>{`${percentage}%`}</span>
     </div>
   );
 }
